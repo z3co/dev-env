@@ -1,8 +1,6 @@
 #!/bin/bash
-FLATPAKS=(
-  "com.discordapp.Discord"
-  "app.zen_browser.zen"
-  )
+
+source packages.conf
 
 for pak in "${FLATPAKS[@]}"; do
   if ! flatpak list | grep -i "$pak" &> /dev/null; then
