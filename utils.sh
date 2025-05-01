@@ -14,7 +14,7 @@ install_packages() {
 
   for pkg in "${packages[@]}"; do
     if ! is_installed "$pkg" && ! is_group_installed "$pkg"; then
-      to_install+=("")
+      to_install+=("$pkg")
     fi 
   done
 
