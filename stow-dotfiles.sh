@@ -3,21 +3,8 @@
 ORIGINAL_DIR=$(pwd)
 REPO_URL="https://github.com/z3co/dotfiles.git"
 REPO_NAME="dotfiles"
-CONFIG_LIST=(
-  zshrc
-  nvim
-  ohmyposh
-  tmux
-  wofi
-  backgrounds
-  hyprland
-  hyprlock
-  hyprmocha
-  hyprpaper
-  kitty
-  waybar
-  wlogout
-)
+
+source dotfiles.conf
 
 is_stow_installed() {
   pacman -Qi "stow" &> /dev/null
