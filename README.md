@@ -11,6 +11,6 @@ Typecraft has written most of this i have only made few adjustments for it to be
 You are very welcome to contribute
 
 - Fork the repo
-- Clone to your machine  ``` git clone https://github.com/z3co/nix-bash.git ```
+- Clone to your machine  ``` git clone https://github.com/z3co/dev-env.git ```
 - Make your changes commit and push
 - Create a pull request with your changes
