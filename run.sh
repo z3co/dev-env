@@ -5,8 +5,8 @@ print_logo() {
 ________                                            
 \______ \   _______  __           ____   _______  __
  |    |  \_/ __ \  \/ /  ______ _/ __ \ /    \  \/ /
- |    `   \  ___/\   /  /_____/ \  ___/|   |  \   /   Arch linux crafting tool
-/_______  /\___  >\_/            \___  >___|  /\_/    Creater: typecraft, mostly
+ |    `   \  ___/\   /  /_____/ \  ___/|   |  \   /   Arch Linux System Crafting Tool
+/_______  /\___  >\_/            \___  >___|  /\_/    by: typecraft, mostly
         \/     \/                    \/     \/      
 EOF
 }
