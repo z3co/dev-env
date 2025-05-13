@@ -1,24 +1,55 @@
 #!/usr/bin/env bash
 
-if ! command -v stow &> /dev/null; then
-  echo "[ERROR] Stow is not installed"
+ORIGINAL_DIR=$(pwd)
+REPO_URL="https://github.com/z3co/dotfiles.git"
+REPO_NAME="dotfiles"
+CONFIG_LIST=(
+  zshrc
+  nvim
+  ohmyposh
+  tmux
+  wofi
+  backgrounds
+  hyprland
+  hyprlock
+  hyprmocha
+  hyprpaper
+  kitty
+  waybar
+  wlogout
+)
+
+is_stow_installed() {
+  pacman -Qi "stow" &> /dev/null
+}
+
+if ! is_stow_installed; then
+  echo "Install stow first"
   exit 1
 fi
 
-if [[ -e $(pwd)/dotfiles ]]; then
-  echo "Using dotfiles in $(pwd)/dotfiles"
-  dotfiles=`find $(pwd)/dotfiles -mindepth 1 -maxdepth 1`
-  for s in $dotfiles; do 
-    if basename $s | grep -q ".git"; then
-      echo "[WARNING] Grep filtered out: $s"
-      continue
-    fi 
-    echo "Stowing: $s"
-    name=`basename $s`
-    echo $name
-    stow $name
+cd ~
+
+# Check if the repository already exists
+if [ -d "$REPO_NAME" ]; then
+  echo "Repository '$REPO_NAME' already exists. Skipping clone"
+else
+  git clone "$REPO_URL"
+fi
+
+# Check if the clone was successful
+if [ $? -eq 0 ]; then
+  cd "$REPO_NAME"
+  for s in "${CONFIG_LIST[@]}"; do 
+    if [[ "$1" == "--dry" ]]; then
+      echo "[DRY] Stowing $s"
+    else
+      echo "Stowing $s"
+      stow $s
+    fi
   done
 else
-  echo "[ERROR] Couldnt find dotfiles in $(pwd)/dotfiles"
+  echo "Failed to clone the repository."
   exit 1
 fi
+
