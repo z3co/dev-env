@@ -4,7 +4,7 @@ ORIGINAL_DIR=$(pwd)
 REPO_URL="https://github.com/z3co/dotfiles.git"
 REPO_NAME="dotfiles"
 
-source dotfiles.conf
+source packages.conf
 
 is_stow_installed() {
   pacman -Qi "stow" &> /dev/null
