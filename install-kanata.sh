@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-ORIGINAL_DIR=$(pwd)
-REPO_URL="https://github.com/z3co/dotfiles.git"
 REPO_NAME="dotfiles"
+
+source packages.conf
 
 if ! command -v kanata; then
   echo "Install kanata first"
