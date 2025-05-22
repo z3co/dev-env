@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-ORIGINAL_DIR=$(pwd)
-REPO_URL="https://github.com/z3co/dotfiles.git"
 REPO_NAME="dotfiles"
 
 source packages.conf
@@ -21,7 +19,7 @@ cd ~
 if [ -d "$REPO_NAME" ]; then
   echo "Repository '$REPO_NAME' already exists. Skipping clone"
 else
-  git clone "$REPO_URL"
+  git clone "$REPO_URL" "$REPO_NAME"
 fi
 
 # Check if the clone was successful
