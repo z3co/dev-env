@@ -1,51 +1,62 @@
-# Dev env setup
-Some scripts to set up archlinux to my liking in minutes and not half an hour
+# Dev Env Setup
 
-## How to use it?
-From a clean install of archlinux simply edit the packages.conf file using your prefered editor.(The best one of course being neovim) Add the packages you need under the categories you think fits them best, or just put them all in one of the categories if you are weird. Add any package you like from the AUR or the official repos, and add any flatpaks in the flatpak category. Note that flatpaks can only be installed if listed in the FLATPAK category in the packages.conf. For help structuring the packages.conf just see my example in the repo [packages.conf](https://github.com/z3co/dev-env/blob/main/packages.conf).
+This repository contains scripts to set up Arch Linux to my liking in minutes, not half an hour. It automates package installation, user configuration, and dotfiles deployment.
 
-***Remember to cd into the repo with these scripts***
+## Features
 
-Now you are ready to run the script(Hopefully)
-```bash
-./run.sh
-```
-**<span style="color: red">DONT RUN ANY OF THE SCRIPTS AS ROOT(Meaning dont use sudo)</span>**
+- Install a curated set of packages and tools via a single configuration file.
+- Automate setup of tmux, neovim, window managers, and more.
+- Integrate your personal dotfiles repository using GNU Stow.
+- Easily apply custom keybinds (via Kanata) and user services.
 
-If you use tmux you can install Tmux Plugin Manager by running the install-tpm.sh script
-```bash
-./install-tpm.sh
-```
+## Usage
 
-If your have a dotfiles setup for stow like [mine](https://github.com/z3co/dotfiles) you can use the stow-dotfiles.sh script to easily set them up. Just add the REPO_URL env variable to the packages.conf like in [my example](https://github.com/z3co/dev-env/blob/main/packages.conf), it needs to point to your dotfile repo. Then add all the folders to be stowed's names, not full paths just their names, to the CONFIG_LIST in the packages.conf, see my example [packages.conf](https://github.com/z3co/dev-env/blob/main/packages.conf) for better understanding. 
+1. **Clone this repository:**
+   ```bash
+   git clone https://github.com/z3co/dev-env.git
+   cd dev-env
+   ```
 
-When that is done you can run the stow-dotfiles.sh(You need to have git and stow installed)
-```bash
-./stow-dotfiles.sh
-```
-*The dotfiles will be cloned into ~/dotfiles, there you can make any changes to them you want stow will auto update the real dotfiles*
+2. **Edit `packages.conf`:**
+   - Add packages you want to install under the relevant categories.
+   - Set `REPO_URL` to your dotfiles repository (e.g., `https://github.com/z3co/dotfiles.git`).
+   - List which configuration folders to stow in `CONFIG_LIST`.
 
+3. **Run the main setup script:**
+   ```bash
+   ./run.sh
+   ```
+   **Do not run as root (do not use sudo).**
 
-### Custom keybinds
-For custom keybinds i recommend [kanata](https://github.com/jtroo/kanata)
+4. **(Optional) Set up dotfiles:**
+   ```bash
+   ./stow-dotfiles.sh
+   ```
+   This will clone your dotfiles into `~/dotfiles` and stow the listed configurations.
 
-To try it out just install kanata by adding it to the packages.conf. Then you can add your kanata config to the dotfiles repo at ~/dotfiles. For an example see [my setup](https://github.com/z3co/dotfiles/tree/main/kanata/.config) where i swap capslock for esc/ctrl and esc for capslock. Note that we also have a systemd service file in here as that is needed for running kanata on arch linux. For that you can copy mine and put it correctly in your dotfiles repo.
+5. **(Optional) Install tmux plugin manager:**
+   ```bash
+   ./install-tpm.sh
+   ```
 
-Now you can run the [install-kanata.sh](https://github.com/z3co/dev-env) script
-```bash
-./install-kanata.sh
-```
+6. **(Optional) Configure custom keybinds with Kanata:**
+   - Add your Kanata config to your dotfiles.
+   - Add the kanata service file to your dotfiles (As i did in [my dotfiles](https://github.com/z3co/dotfiles/tree/main/kanata/.config/systemd/user))
+   - Run:
+     ```bash
+     ./install-kanata.sh
+     ```
 
-## Credit typecraft_dev
-Typecraft has written most of this i have only made few adjustments for it to better fit my use case, go visit the yt channel
+## Customization
 
-- [Youtube](https://youtube.com/@typecraft_dev)
-- [Github](https://github.com/typecraft-dev/crucible)
+- Change package lists and dotfiles as needed.
+- See the example `packages.conf` for formatting guidelines.
 
-## Contributing
-You are very welcome to contribute
+## Credits
 
-- Fork the repo
-- Clone to your machine  ``` git clone https://github.com/z3co/dev-env.git ```
-- Make your changes commit and push
-- Create a pull request with your changes
+- Heavily inspired by [typecraft-dev/crucible](https://github.com/typecraft-dev/crucible)
+- Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## License
+
+MIT
