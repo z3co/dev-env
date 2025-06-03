@@ -37,7 +37,8 @@ fi
 
 if [ $? -eq 0 ]; then
   cd "$REPO_NAME"
-  stow kanata
+  stow --adopt kanata
+  git restore .
 else
   echo "Failed to clone the repository."
   exit 1

@@ -30,9 +30,10 @@ if [ $? -eq 0 ]; then
       echo "[DRY] Stowing $s"
     else
       echo "Stowing $s"
-      stow $s
+      stow --adopt $s
     fi
   done
+  git restore .
 else
   echo "Failed to clone the repository."
   exit 1
